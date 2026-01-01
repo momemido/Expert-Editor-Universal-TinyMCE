@@ -11,6 +11,36 @@ L'auteur de ce script ne pourra être tenu responsable des conséquences liées 
 
 ---
 
+## 🛠 Prérequis & Installation
+
+### 1. Installer l'extension Tampermonkey
+Pour utiliser ce script, vous devez d'abord installer l'extension **Tampermonkey** sur un navigateur compatible :
+👉 [**Télécharger Tampermonkey (Site Officiel)**](https://www.tampermonkey.net/)
+
+| Navigateur | Compatibilité |
+| :--- | :--- |
+| **Google Chrome** | ✅ Testé & Approuvé |
+| **Microsoft Edge** | ✅ Testé & Approuvé |
+| **Brave** | ✅ Testé & Approuvé |
+| **Mozilla Firefox** | ✅ Compatible |
+
+---
+
+### 2. Activer le "Mode Développeur" (Indispensable)
+Sur certains navigateurs récents (Chrome, Edge, Brave), vous devez activer le mode développeur pour permettre l'exécution des scripts locaux :
+
+1. Ouvrez l'onglet **Extensions** de votre navigateur (ou tapez `chrome://extensions` dans la barre d'adresse).
+2. En haut à droite, activez l'interrupteur **Mode développeur**.
+3. Redémarrez votre navigateur.
+
+---
+
+### 3. Installer l'Expert Editor Universal pour TinyMCE
+
+* 🚀 **Expert Editor Universal** : [👉 Cliquez ici pour l'installer](https://github.com/Steven17200/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/Expert_Editor_Universal%20.user.js) 
+>**Procédure :** Une page **Tampermonkey** s'ouvrira automatiquement après le clic. Cliquez simplement sur le bouton **"Installer"**.
+---
+
 ## 🌟 À quoi ça sert ?
 Ce script "UserScript" s'injecte dynamiquement dans les zones de rédaction pour transformer un éditeur basique en une suite de rédaction experte. Il permet de formater du texte, d'insérer des tableaux et d'intégrer des médias de manière fluide.
 
