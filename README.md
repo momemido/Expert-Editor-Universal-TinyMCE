@@ -44,4 +44,4 @@ Le script a été conçu pour être universel. Il utilise la détection active d
 
 ## 👨‍💻 Auteur
 * **Auteur** : [Steven17200](https://github.com/Steven17200)
-* **Intelligence Artificielle** : Les scripts de ce dashboard ont été développés ainsi que ce tuto à 100% par **Gemini 3 Flash (Google)**.
+* **Intelligence Artificielle** : Le scripts ont été développés ainsi que ce tuto à 100% par **Gemini 3 Flash (Google)**.
