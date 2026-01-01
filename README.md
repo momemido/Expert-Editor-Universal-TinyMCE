@@ -18,7 +18,7 @@ Ce script "UserScript" s'injecte dynamiquement dans les zones de rédaction pour
 
 ## 🛠️ Fonctionnalités incluses
 ## 🎨 Formatage & Style
-##A (Zoom Textuel) : Un bouton cyclique pour agrandir votre texte sur 5 niveaux (14px à 36px).
+## A (Zoom Textuel) : Un bouton cyclique pour agrandir votre texte sur 5 niveaux (14px à 36px).
 
 
 ## ✎ (Mode Manuscrit) : Applique une police style "écriture à la main" (Comic Sans MS) sur le texte sélectionné.
