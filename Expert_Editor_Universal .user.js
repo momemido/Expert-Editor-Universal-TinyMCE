@@ -1,11 +1,10 @@
 // ==UserScript==
-// @name         Expert Editor Universal TinyMCE
+// @name         Expert Editor Universal TinyMCE - ULTIMATE V4.8.3
 // @namespace    https://github.com/Steven17200
-// @version      3.2
-// @description  Barre d'outils complète : Zoom, Couleurs (NRBV), Manuscrit, YT & SoundCloud Minimaliste
+// @version      4.8.3
+// @description  Version Totale : YT Music Audio + Tailles 6pt-72pt + Styles + Couleurs + Shorts Blanc
 // @author       Steven17200
 // @icon         https://cdn-icons-png.flaticon.com/512/825/825590.png
-// @icon         https://www.universfreebox.com/favicon.ico
 // @match        *://*/*
 // @grant        none
 // ==/UserScript==
@@ -13,124 +12,126 @@
 (function() {
     'use strict';
 
-    // --- 1. CSS ---
-    const style = document.createElement('style');
-    style.innerHTML = `
-        .mce-btn-custom button { border-radius: 4px !important; border: none !important; margin-left: 2px; transition: transform 0.1s, opacity 0.2s; padding: 2px 6px !important; min-width: 28px; height: 24px; }
-        .mce-btn-custom span { color: #fff !important; font-weight: bold !important; font-size: 11px; line-height: 20px; }
-        .mce-btn-custom:hover { opacity: 0.8; transform: scale(1.05); }
-        #btn-font-sw button { background: #000 !important; border: 1px solid #ffe81f !important; }
-        #btn-font-tr button { background: #5d1010 !important; }
-        #btn-font-t8 button { background: #222 !important; border-left: 3px solid #ff0000 !important; }
-        #btn-zoom-fixed button { background: #7f8c8d !important; }
-        #btn-text-micro button { background: #444 !important; }
-        #btn-human-font button { background: #9b59b6 !important; }
-        #btn-video-yt button   { background: #ff0000 !important; }
-        #btn-sc-custom button  { background: #ff5500 !important; }
-        #btn-list-num button, #btn-list-dots button, #btn-table-custom button { background: #555 !important; }
-        #btn-text-black button { background: #2c3e50 !important; }
-        #btn-text-red button   { background: #e74c3c !important; }
-        #btn-text-blue button  { background: #3498db !important; }
-        #btn-text-green button { background: #27ae60 !important; }
-        #btn-text-orange button { background: #ff9800 !important; }
-        #btn-text-white button { background: #ffffff !important; border: 1px solid #ccc !important; }
-        #btn-text-white span   { color: #000 !important; }
-    `;
-    document.head.appendChild(style);
+    const TEMPLATES = {
+        1: `<div style="border-left: 5px solid #3498db; background: #f8f9fa; padding: 15px; margin: 10px 0; border-radius: 4px; color: #2c3e50;"><strong style="color: #2980b9;">ℹ️ INFO :</strong> Votre texte ici...</div>`,
+        2: `<div style="border: 2px solid #e74c3c; background: #fdf2f2; padding: 15px; margin: 10px 0; border-radius: 4px; color: #c0392b;"><strong>⚠️ ALERTE :</strong> Message important...</div>`,
+        3: `<table style="border-collapse: collapse; width: 100%; border: 1px solid #ddd;"><tr style="background:#eee;"><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">Titre 1</td><td style="padding:8px; border:1px solid #ddd; font-weight:bold;">Titre 2</td></tr><tr><td style="padding:8px; border:1px solid #ddd;">Donnée 1</td><td style="padding:8px; border:1px solid #ddd;">Donnée 2</td></tr></table>`
+    };
 
-    function getEditor() { return window.tinyMCE ? window.tinyMCE.activeEditor : null; }
-
-    let sizeLevel = 0;
-    const fontSizes = ['14px', '18px', '24px', '30px', '36px'];
-    const labels = ['A', 'A+', 'A++', 'A+++', 'MAX'];
-
-    // --- 2. FONCTION MÉDIA AMÉLIORÉE (Boucle + Son) ---
-    function insertMedia(type) {
-        const ed = getEditor();
-        if (!ed) return;
-        const url = prompt(type === 'yt' ? "Lien YouTube ou Dailymotion :" : "Lien SoundCloud :");
-        if (!url) return;
-
-        let html = "";
-        if (type === 'yt') {
-            let width = prompt("Largeur de la vidéo (px) :", "560");
-            let height = Math.round((width * 315) / 560);
-
-            const ytMatch = url.match(/(?:youtu\.be\/|youtube\.com\/(?:.*v=|.*\/|.*embed\/))([^"&?\/\s]{11})/);
-            const dmMatch = url.match(/(?:dailymotion\.com\/(?:video|embed\/video)\/|dai\.ly\/)([a-zA-Z0-9]+)/);
-
-            if (ytMatch) {
-                const id = ytMatch[1];
-                // loop=1 + playlist=ID (obligatoire pour boucler sur YT) + autoplay=1
-                html = `<p><iframe width="${width}" height="${height}" src="https://www.youtube.com/embed/${id}?autoplay=1&loop=1&playlist=${id}&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>`;
-            } else if (dmMatch) {
-                const id = dmMatch[1];
-                // loop=1 + mute=0 pour Dailymotion
-                html = `<p><iframe width="${width}" height="${height}" src="https://www.dailymotion.com/embed/video/${id}?autoplay=1&loop=1&mute=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></p>`;
-            } else {
-                alert("Lien non reconnu");
-            }
+    function init() {
+        const editors = typeof tinyMCE !== 'undefined' ? tinyMCE.editors : [];
+        if (editors.length > 0) {
+            editors.forEach(setupEditor);
         } else {
-            const cleanUrl = encodeURIComponent(url.split('?')[0]);
-            html = `<p><iframe width="100%" height="20" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=${cleanUrl}&color=%23ff5500&inverse=false&auto_play=false"></iframe></p>`;
+            setTimeout(init, 1000);
         }
-        if (html) ed.execCommand('mceInsertContent', false, html);
     }
 
-    function inject() {
-        const ed = getEditor();
-        if (!ed) return;
-        const toolbar = document.querySelector('.mce-container-body.mce-flow-layout .mce-container-body.mce-flow-layout') ||
-                        document.querySelector('.mce-container-body.mce-flow-layout');
+    function setupEditor(ed) {
+        if (ed.getContainer() && ed.getContainer().querySelector('.expert-editor-toolbar')) return;
 
-        if (toolbar && !document.getElementById('btn-zoom-fixed')) {
-            const create = (id, label, f, title = "") => {
-                const d = document.createElement('div');
-                d.id = id; d.className = 'mce-widget mce-btn mce-btn-custom';
-                d.setAttribute('title', title);
-                d.innerHTML = `<button type="button"><span>${label}</span></button>`;
-                d.addEventListener('mousedown', (e) => { e.preventDefault(); f(e); });
-                return d;
+        const container = ed.getContainer();
+        if (container) {
+            const toolbar = document.createElement('div');
+            toolbar.className = 'expert-editor-toolbar';
+            toolbar.style = "background: #f1f1f1; border-bottom: 1px solid #ccc; padding: 5px; display: flex; flex-wrap: wrap; gap: 5px; align-items: center; justify-content: flex-start; z-index: 9999;";
+
+            const create = (id, text, onClick) => {
+                const btn = document.createElement('button');
+                btn.id = id;
+                btn.innerHTML = text;
+                btn.type = 'button';
+                btn.style = "padding: 4px 8px; cursor: pointer; background: #fff; border: 1px solid #ccc; border-radius: 3px; font-size: 12px; font-family: sans-serif;";
+                btn.onclick = onClick;
+                return btn;
             };
 
-            toolbar.appendChild(create('btn-list-num', '1.', () => ed.execCommand('InsertOrderedList')));
-            toolbar.appendChild(create('btn-list-dots', '•', () => ed.execCommand('InsertUnorderedList')));
-            toolbar.appendChild(create('btn-table-custom', '田', () => ed.execCommand('mceInsertContent', false, '<table style="border-collapse:collapse;width:100%;border:1px solid black;"><tr><td style="border:1px solid black;padding:8px;">&nbsp;</td></tr></table>')));
-            toolbar.appendChild(create('btn-video-yt', 'YT', () => insertMedia('yt'), "YouTube / Dailymotion (Boucle + Son)"));
-            toolbar.appendChild(create('btn-sc-custom', 'SC', () => insertMedia('sc'), "SoundCloud"));
-            toolbar.appendChild(create('btn-zoom-fixed', 'A', (e) => {
-                sizeLevel = (sizeLevel + 1) % fontSizes.length;
-                ed.execCommand('FontSize', false, fontSizes[sizeLevel]);
-                e.currentTarget.querySelector('span').innerText = labels[sizeLevel];
-            }, "Zoom"));
-            toolbar.appendChild(create('btn-text-micro', '6', () => {
-                const sel = ed.selection.getContent();
-                if (sel) ed.execCommand('mceInsertContent', false, `<span style="font-size:9px;">${sel}</span>`);
-            }, "Micro"));
-            toolbar.appendChild(create('btn-human-font', '✎', () => {
-                const sel = ed.selection.getContent();
-                if (sel) ed.execCommand('mceInsertContent', false, `<span style="font-family:'Comic Sans MS',cursive;font-size:1.1em;">${sel}</span>`);
-            }, "Manuscrit"));
-            toolbar.appendChild(create('btn-font-sw', 'SW', () => {
-                const sel = ed.selection.getContent();
-                if (sel) ed.execCommand('mceInsertContent', false, `<span style="color:#ffe81f; background:#000; font-family:'Arial Black'; letter-spacing:2px; padding:0 5px;">${sel}</span>`);
-            }));
+            // 1. TAILLE DE POLICE (6pt-72pt)
+            const sizeSelect = document.createElement('select');
+            sizeSelect.style = "padding: 3px; cursor: pointer; border: 1px solid #ccc; border-radius: 3px; font-size: 12px;";
+            const sizes = ['6pt', '8pt', '10pt', '12pt', '14pt', '18pt', '24pt', '36pt', '48pt', '72pt'];
+            sizes.forEach(size => {
+                const opt = document.createElement('option');
+                opt.value = size; opt.innerHTML = size;
+                if(size === '12pt') opt.selected = true;
+                sizeSelect.appendChild(opt);
+            });
+            sizeSelect.onchange = () => { ed.focus(); ed.execCommand('FontSize', false, sizeSelect.value); };
+            toolbar.appendChild(sizeSelect);
+
+            // 2. MODÈLES
+            toolbar.appendChild(create('btn-tpl-1', 'Info', () => { ed.focus(); ed.execCommand('mceInsertContent', false, TEMPLATES[1]); }));
+            toolbar.appendChild(create('btn-tpl-2', 'Alerte', () => { ed.focus(); ed.execCommand('mceInsertContent', false, TEMPLATES[2]); }));
+
+            // 3. STYLES TR / T8 / HUMAIN / PETIT
             toolbar.appendChild(create('btn-font-tr', 'TR', () => {
-                const sel = ed.selection.getContent();
-                if (sel) ed.execCommand('mceInsertContent', false, `<span style="color:#ff4500; font-family:Impact; text-transform:uppercase; font-style:italic;">${sel}</span>`);
+                ed.focus(); const sel = ed.selection.getContent();
+                ed.execCommand('mceInsertContent', false, `<span style="color:#ff4500; font-family:Impact; text-transform:uppercase; font-style:italic;">${sel || 'TR'}</span>`);
             }));
             toolbar.appendChild(create('btn-font-t8', 'T8', () => {
-                const sel = ed.selection.getContent();
-                if (sel) ed.execCommand('mceInsertContent', false, `<span style="color:#ff0000; font-family:monospace; font-weight:bold; text-shadow:0 0 5px red;">${sel}</span>`);
+                ed.focus(); const sel = ed.selection.getContent();
+                ed.execCommand('mceInsertContent', false, `<span style="color:#ff0000; font-family:monospace; font-weight:bold; text-shadow:0 0 5px red;">${sel || 'T8'}</span>`);
             }));
-            toolbar.appendChild(create('btn-text-black', 'N', () => ed.execCommand('ForeColor', false, '#000000')));
-            toolbar.appendChild(create('btn-text-red', 'R', () => ed.execCommand('ForeColor', false, '#e74c3c')));
-            toolbar.appendChild(create('btn-text-blue', 'B', () => ed.execCommand('ForeColor', false, '#3498db')));
-            toolbar.appendChild(create('btn-text-green', 'V', () => ed.execCommand('ForeColor', false, '#27ae60')));
-            toolbar.appendChild(create('btn-text-orange', 'O', () => ed.execCommand('ForeColor', false, '#ff9800')));
-            toolbar.appendChild(create('btn-text-white', 'Bl', () => ed.execCommand('ForeColor', false, '#ffffff')));
+            toolbar.appendChild(create('btn-font-humain', 'Humain', () => {
+                ed.focus(); const sel = ed.selection.getContent();
+                ed.execCommand('mceInsertContent', false, `<span style="font-family:'Comic Sans MS', cursive, sans-serif;">${sel || 'Texte'}</span>`);
+            }));
+            toolbar.appendChild(create('btn-font-small', 'Petit', () => {
+                ed.focus(); const sel = ed.selection.getContent();
+                ed.execCommand('mceInsertContent', false, `<span style="font-size: 8pt;">${sel || 'Petit'}</span>`);
+            }));
+
+            // 4. COULEURS (9 Boutons)
+            const cols = [{n:'N',c:'#000'},{n:'R',c:'#e74c3c'},{n:'B',c:'#3498db'},{n:'V',c:'#27ae60'},{n:'O',c:'#ff9800'},{n:'Vi',c:'#8e44ad'},{n:'VF',c:'#1b5e20'},{n:'BF',c:'#0d47a1'},{n:'Bl',c:'#fff'}];
+            cols.forEach(col => {
+                const b = create('btn-col-'+col.n, col.n, () => { ed.focus(); ed.execCommand('ForeColor', false, col.c); });
+                if(col.n === 'Bl') b.style.border = "1px solid #aaa";
+                toolbar.appendChild(b);
+            });
+
+            // 5. MÉDIAS
+            // YT Standard
+            toolbar.appendChild(create('btn-yt-std', '📺 YT', () => {
+                const url = prompt("Lien YouTube Standard :");
+                const id = url ? url.match(/(?:v=|\/embed\/|youtu.be\/)([\w-]+)/)?.[1] : null;
+                if(id){
+                    const w = prompt("Largeur :", "560"), h = prompt("Hauteur :", "315");
+                    ed.focus(); ed.execCommand('mceInsertContent', false, `<iframe width="${w}" height="${h}" src="https://www.youtube.com/embed/${id}" frameborder="0" allowfullscreen></iframe>`);
+                }
+            }));
+            // YT Music (Lecteur Audio Uniquement)
+            toolbar.appendChild(create('btn-yt-music', '🎵 Music', () => {
+                const url = prompt("Lien YouTube Music :");
+                const id = url ? url.match(/(?:v=|\/watch\?v=|youtu.be\/)([\w-]+)/)?.[1] : null;
+                if(id){
+                    ed.focus();
+                    const musicHtml = `<div style="margin:10px 0;"><iframe width="100%" height="60" src="https://www.youtube.com/embed/${id}?controls=1&modestbranding=1" frameborder="0" style="border-radius:8px; background:#000;"></iframe></div><p></p>`;
+                    ed.execCommand('mceInsertContent', false, musicHtml);
+                }
+            }));
+            // SoundCloud Miniature
+            toolbar.appendChild(create('btn-sc', '☁️ SC', () => {
+                const url = prompt("Lien SoundCloud :");
+                if(url){
+                    ed.focus();
+                    const scHtml = `<iframe width="100%" height="120" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&visual=false"></iframe><p></p>`;
+                    ed.execCommand('mceInsertContent', false, scHtml);
+                }
+            }));
+            // YouTube Shorts (FOND BLANC)
+            toolbar.appendChild(create('btn-yt-shorts', '🎬 SHORTS', () => {
+                const url = prompt("Lien YouTube Short :");
+                const id = url ? url.match(/(?:\/shorts\/|v=)([\w-]+)/)?.[1] : null;
+                if(id){
+                    ed.focus();
+                    const shortsHtml = `<div style="display:flex; justify-content:center; margin:15px 0;"><iframe width="315" height="560" src="https://www.youtube.com/embed/${id}" style="border-radius:12px; border:none; object-fit:cover; aspect-ratio:9/16; background:#000;" allowfullscreen></iframe></div><p></p>`;
+                    ed.execCommand('mceInsertContent', false, shortsHtml);
+                }
+            }));
+
+            container.insertBefore(toolbar, container.firstChild);
         }
     }
 
-    setInterval(inject, 2000);
+    init();
 })();
